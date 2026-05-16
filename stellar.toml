@@ -1,0 +1,38 @@
+VERSION = "2.0.0"
+
+NETWORK_PASSPHRASE = "Test SDF Future Network ; October 2022"
+HORIZON_URL        = "https://horizon-futurenet.stellar.org"
+SOROBAN_RPC_URL    = "https://rpc-futurenet.stellar.org"
+
+# Protocol 26 "Yardstick" — primary target
+# Protocol 25 "X-Ray"     — BN254 / Poseidon host function primitives
+
+[DOCUMENTATION]
+ORG_NAME        = "Krypton Ledger"
+ORG_DESCRIPTION = "ZK-Shielded Invoice Factoring on Stellar — Drips Wave 5"
+ORG_URL         = "https://krypton-ledger.xyz"
+ORG_GITHUB      = "https://github.com/krypton-ledger"
+
+[[CONTRACTS]]
+name        = "zk_factoring"
+description = "Soroban contract that verifies Noir Ultrahonk proofs for shielded invoice factoring using CAP-0080 BN254 host functions."
+network     = "futurenet"
+# Replace with deployed contract ID after `soroban contract deploy`
+contract_id = "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSC4"
+version     = "0.1.0"
+
+[[CONTRACTS.FUNCTIONS]]
+name        = "verify_invoice_proof"
+description = "Verifies a Noir Ultrahonk proof. Stores nullifier on success."
+inputs      = ["proof_bytes: Bytes", "public_inputs: Vec<BytesN<32>>"]
+outputs     = ["bool"]
+
+[[PRINCIPALS]]
+name  = "Krypton Ledger Core Team"
+email = "team@krypton-ledger.xyz"
+roles = ["owner", "operator"]
+
+[TESTNET]
+HORIZON_URL    = "https://horizon-testnet.stellar.org"
+SOROBAN_RPC_URL = "https://soroban-testnet.stellar.org"
+NETWORK_PASSPHRASE = "Test SDF Network ; September 2015"
